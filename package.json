@@ -1,0 +1,21 @@
+{
+  "name": "graphql-recipe-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "apollo-server": "^2.10.1",
+    "apollo-server-express": "^2.10.1",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.6.0",
+    "subscriptions-transport-ws": "^0.9.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
