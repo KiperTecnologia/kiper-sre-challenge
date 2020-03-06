@@ -1,5 +1,3 @@
-This repository aims to provide a simple app in NodeJs with GraphQL that interacts with an external API.
-
 # The Test
 
 You must fork this repository and using your skills and knowledge, you must modify the application according to the requirements below:
@@ -25,6 +23,7 @@ In addition we want you to create and describe in the a pull request, how would 
 You can use the tools you want, delivering and explaining why each step is what counts, however the items below are a plus.
 - Jenkins
 - Bitbucket
+- AWS
 
 ## What will be evaluated
 
