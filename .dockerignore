@@ -3,3 +3,5 @@ docker*
 README.md
 .git*
 devops
+terraform
+nginx
