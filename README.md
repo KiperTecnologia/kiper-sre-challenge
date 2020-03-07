@@ -33,3 +33,11 @@ You can use the tools you want, delivering and explaining why each step is what 
 - Infra as code
 - Complexity
 
+## Testing
+Use this query in playground
+# Write your query or mutation here
+query {
+  allBrands {
+    name
+  }
+}
