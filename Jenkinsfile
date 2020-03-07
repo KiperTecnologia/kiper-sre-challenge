@@ -1,13 +1,15 @@
-pipeline {  environment {
-    registry = "docker_hub_account/repository_name"
-    registryCredential = 'dockerhub'
-  }  agent any  stages {
-    stage('Building image') {
-      steps{
-        script {
-          docker.build registry + ":$BUILD_NUMBER"
+pipeline {
+    agent any
+    stages {
+        stage('Build image') {
+            steps {
+                echo 'Starting to build docker image'
+
+                script {
+                    def customImage = docker.build("kiper-sre-challenge:${env.BUILD_ID}")
+                    customImage.push()
+                }
+            }
         }
-      }
     }
-  }
 }
