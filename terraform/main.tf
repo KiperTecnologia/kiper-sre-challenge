@@ -1,28 +1,32 @@
 resource "aws_ecs_cluster" "graphql" {
   name = "graphql"
+  capacity_providers = [ "FARGATE" ]
 }
 
 resource "aws_ecs_service" "graphql" {
   name            = "graphql"
-  cluster         = "${aws_ecs_cluster.graphql.id}"
-  task_definition = "${aws_ecs_task_definition.mongo.arn}"
+  cluster         = aws_ecs_cluster.graphql.id
   desired_count   = 1
-  iam_role        = "${aws_iam_role.foo.arn}"
-  depends_on      = ["aws_iam_role_policy.foo"]
-
-  ordered_placement_strategy {
-    type  = "binpack"
-    field = "cpu"
+  launch_type     = "FARGATE"
+  task_definition = aws_ecs_task_definition.graphql.arn
+  network_configuration {
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    subnets          = aws_subnet.private.*.id
+    assign_public_ip = true
   }
-
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.foo.arn}"
+    target_group_arn = aws_alb_target_group.graphql.id
     container_name   = "graphql"
     container_port   = 80
   }
+}
 
-  placement_constraints {
-    type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  }
+resource "aws_ecs_task_definition" "graphql" {
+  family                = "graphql"
+  container_definitions = file("definition.json")
+  requires_compatibilities = [ "FARGATE" ]
+  network_mode = "awsvpc"
+  execution_role_arn       = aws_iam_role.graphql.arn
+  cpu = 256
+  memory = 512
 }
