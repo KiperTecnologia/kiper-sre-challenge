@@ -19,8 +19,10 @@ pipeline {
             }
         }
         stage('teste'){
-            def taskRevision = sh ( script: "aws ecs describe-task-definition  --task-definition graphql | egrep 'revision'| tr ',' ' '| awk '{print \$2}'").trim()
-	    sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:${taskRevision} --desired-count 1"
+            steps{
+                def taskRevision = sh ( script: "aws ecs describe-task-definition  --task-definition graphql | egrep 'revision'| tr ',' ' '| awk '{print \$2}'").trim()
+	        sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:${taskRevision} --desired-count 1"
+            }
         }
     }
 }
