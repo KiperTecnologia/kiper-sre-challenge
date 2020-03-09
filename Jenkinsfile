@@ -10,13 +10,13 @@ pipeline {
         stage('Tag'){
             steps {
                 echo 'Starting to build docker image'
-                sh 'docker build -t kiper-sre-challenge .'
+                sh 'docker tag  kiper-sre-challenge:latest larcbp/kiper-sre-challenge:latest'
             }
         }
         stage('Push image') {
             steps {
                 echo 'Pushing'
-                sh 'docker push larcbp/kiper-sre-challenge .'
+                sh 'docker push larcbp/kiper-sre-challenge:latest'
             }
         }
         stage('Deploy'){
