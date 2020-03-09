@@ -21,7 +21,8 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-               echo 'teste'
+               echo 'sed'
+               sh 'sed "s/latest/${BUILD_NUMBER}/g -i terraform/main.tf"'
             }
         }
     }
