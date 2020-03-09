@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy'){
             steps{
                 sh 'sed "s/latest/${BUILD_NUMBER}/g" -i terraform/definition.json'
-                sh 'aws ecs register-task-definition --cli-input-json file://definition.json'
+                sh 'cd terraform && aws ecs register-task-definition --cli-input-json file://definition.json'
             }
         }
     }
