@@ -4,9 +4,8 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'Starting to build docker image'
-
-                script {
-                    def customImage = docker.build("kiper-sre-challenge:${env.BUILD_ID}")
+                docker.withRegistry('http://registry.hub.docker.com', 'credentials-id') {
+                    def customImage = docker.build("larcbp/kiper-sre-challenge:${env.BUILD_ID}")
                     customImage.push()
                 }
             }
