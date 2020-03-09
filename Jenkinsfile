@@ -19,8 +19,8 @@ pipeline {
             }
         }
         stage('teste'){
+            def taskNumber = sh("aws ecs describe-task-definition  --task-definition graphql | jq '.taskDefinition.revision'")
             steps{
-                def taskNumber = sh("aws ecs describe-task-definition  --task-definition graphql | jq '.taskDefinition.revision'")
 	        sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:`aws ecs describe-task-definition  --task-definition graphql | jq '.taskDefinition.revision'` --desired-count 1"
             }
         }
