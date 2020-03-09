@@ -33,11 +33,44 @@ You can use the tools you want, delivering and explaining why each step is what 
 - Infra as code
 - Complexity
 
+## Running
+```
+docker-compose up -d
+```
+
+## Using
+http://localhost or http://graphql.binganetworks.com.br
+You can change application URL changing nginx/default.conf
+
 ## Testing
 Use this query in playground
-# Write your query or mutation here
+## Write your query or mutation here
 query {
   allBrands {
     name
   }
 }
+
+## Production build
+This project use Jenkinsfile for deploy.
+
+## Terraform environtment
+This app runs using AWS Fargate and have a ALB in front of service.
+
+### Deploy terraform environment
+```
+cd terraform
+terraform init
+terraform apply
+```
+
+### Destroy terraform environment
+```
+terraform init
+terraform destroy
+```
+
+# TODO NEXT...
+- Jenkinsfile deploy AWS FARGATE
+- Documentations
+- Bitbucket-ci as alternative CI
