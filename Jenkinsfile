@@ -30,16 +30,28 @@ pipeline {
                 }
             }
         }
-        stage('Deploy'){
+        stage('Create new definition'){
             steps{
                 sh 'sed "s/latest/${BUILD_NUMBER}/g" -i terraform/definition.json'
                 sh 'cd terraform && aws ecs register-task-definition --cli-input-json file://definition.json'
-                echo 'TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "graphql")'
-                echo 'NEW_TASK_DEFINTIION=$(echo $TASK_DEFINITION | jq --arg IMAGE "larcbp/kiper-sre-challenge:${BUILD_NUMBER}" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities)')"'
-                echo 'NEW_TASK_INFO=$(aws ecs register-task-definition --region "$AWS_DEFAULT_REGION" --cli-input-json "$NEW_TASK_DEFINTIION")'
-                echo 'NEW_REVISION=$(echo $NEW_TASK_INFO | jq '.taskDefinition.revision')'
-                sh 'aws ecs update-service --service graphql --desired-count 3 --cluster graphql --task-definition graphql:${NEW_REVISION}'
             }
+        }
+        stage(''){
+            def taskRevision = sh (
+                returnStdout: true,
+                script:  "                                                              \
+                  aws ecs describe-task-definition  --task-definition graphql     \
+                                              | egrep 'revision'                  \
+                                              | tr ',' ' '                        \
+                                              | awk '{print \$2}'                 \
+                 "
+                 ).trim()
+	        sh  "                                                                     \
+                aws ecs update-service  --cluster ${clusterName}                        \
+                                        --service ${serviceName}                        \
+                                        --task-definition graphql:${taskRevision} \
+                                        --desired-count 1                               \
+                "
         }
     }
 }
