@@ -20,7 +20,7 @@ pipeline {
         }
         stage('teste'){
             steps{
-                taskRevision = sh( script: "aws ecs describe-task-definition  --task-definition graphql | jq '.taskDefinition.revision'",returnStdout: true).trim()
+                taskRevision = sh( script: "aws ecs describe-task-definition  --task-definition graphql | jq \'.taskDefinition.revision\'',returnStdout: true).trim()
 	        sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:${taskRevision} --desired-count 1"
             }
         }
