@@ -19,10 +19,14 @@ pipeline {
         //         sh 'docker push larcbp/kiper-sre-challenge:${BUILD_NUMBER}'
         //     }
         // }
-        docker.withRegistry("https://hub.docker.com", 'f901b70e-5861-4ea2-83bf-daa0ca415ed4') {
-            def customImage = docker.build("${REGISTRY_URL}/kiper-sre-challenge:${BUILD_NUMBER}", ".")
-            /* Push the container to the custom Registry */
-            customImage.push()
+        stage ('Docker build and push'){
+            steps{
+                docker.withRegistry("https://hub.docker.com", 'f901b70e-5861-4ea2-83bf-daa0ca415ed4') {
+                    def customImage = docker.build("${REGISTRY_URL}/kiper-sre-challenge:${BUILD_NUMBER}", ".")
+                    /* Push the container to the custom Registry */
+                    customImage.push()
+                }
+            }
         }
     }
 }
