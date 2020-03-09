@@ -23,7 +23,7 @@ pipeline {
             steps{
                 script {
                     docker.withRegistry("https://index.docker.io/v1/", 'f901b70e-5861-4ea2-83bf-daa0ca415ed4') {
-                        def customImage = docker.build("https://hub.docker.com/kiper-sre-challenge:${BUILD_NUMBER}", ".")
+                        def customImage = docker.build("kiper-sre-challenge:${BUILD_NUMBER}", ".")
                         /* Push the container to the custom Registry */
                         customImage.push()
                     }
