@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy'){
             steps {
                echo 'sed'
-               sh 'sed "s/latest/${BUILD_NUMBER}/g -i terraform/main.tf"'
+               sh 'cd terraform && terraform apply -var 'build_number=${BUILD_NUMBER}''
             }
         }
     }
