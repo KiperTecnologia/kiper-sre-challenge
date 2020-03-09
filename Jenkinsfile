@@ -1,24 +1,6 @@
 pipeline {
     agent any
     stages {
-        // stage('Build image') {
-        //     steps {
-        //         echo 'Starting to build docker image'
-        //         sh 'docker build -t kiper-sre-challenge:${BUILD_NUMBER} .'
-        //     }
-        // }
-        // stage('Tag'){
-        //     steps {
-        //         echo 'Starting to build docker image'
-        //         sh 'docker tag  kiper-sre-challenge:${BUILD_NUMBER} larcbp/kiper-sre-challenge:${BUILD_NUMBER}'
-        //     }
-        // }
-        // stage('Push image') {
-        //     steps {
-        //         echo 'Pushing'
-        //         sh 'docker push larcbp/kiper-sre-challenge:${BUILD_NUMBER}'
-        //     }
-        // }
         stage ('Docker build and push'){
             steps{
                 script {
@@ -36,7 +18,7 @@ pipeline {
                 sh 'cd terraform && aws ecs register-task-definition --cli-input-json file://definition.json'
             }
         }
-        stage(''){
+        stage('teste'){
             def taskRevision = sh ( script: "aws ecs describe-task-definition  --task-definition graphql | egrep 'revision'| tr ',' ' '| awk '{print \$2}'").trim()
 	    sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:${taskRevision} --desired-count 1"
         }
