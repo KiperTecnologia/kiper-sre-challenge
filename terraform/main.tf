@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "terraform-kiper-sre-challenge"
+    key    = "state"
+    region = "us-east-1"
+  }
+}
+
 resource "aws_ecs_cluster" "graphql" {
   name = "graphql"
   capacity_providers = [ "FARGATE" ]

@@ -21,6 +21,7 @@ resource "aws_alb_target_group" "graphql" {
     path                = var.health_check_path
     unhealthy_threshold = "2"
   }
+  depends_on   = [aws_alb.main]
 }
 
 resource "aws_alb_listener" "front_end" {

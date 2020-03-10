@@ -54,23 +54,5 @@ query {
 ## Production build
 This project use Jenkinsfile for deploy.
 
-## Terraform environtment
-This app runs using AWS Fargate and have a ALB in front of service.
-
-### Deploy terraform environment
-```
-cd terraform
-terraform init
-terraform apply
-```
-
-### Destroy terraform environment
-```
-terraform init
-terraform destroy
-```
-
-# TODO NEXT...
-- Jenkinsfile deploy AWS FARGATE
-- Documentations
-- Bitbucket-ci as alternative CI
+# TODO
+- https
