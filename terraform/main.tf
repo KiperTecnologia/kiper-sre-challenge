@@ -23,10 +23,10 @@ resource "aws_ecs_service" "graphql" {
 
 resource "aws_ecs_task_definition" "graphql" {
   family                = "graphql"
-  container_definitions = file("definition.json")
+  container_definitions = file("init_definition.json")
   requires_compatibilities = [ "FARGATE" ]
   network_mode = "awsvpc"
   execution_role_arn       = aws_iam_role.graphql.arn
-  cpu = 256
-  memory = 512
+  cpu = 1024
+  memory = 2048
 }
