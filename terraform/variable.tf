@@ -19,3 +19,6 @@ variable "health_check_path" {
   default = "/"
 }
 
+variable "build_number" {
+  default = "latest"
+}

@@ -1,16 +1,21 @@
-[
-  {
-    "name": "graphql",
-    "image": "larcbp/kiper-sre-challenge:latest",
-    "cpu": 256,
-    "memory": 512,
-    "networkMode": "awsvpc",
-    "essential": true,
-    "portMappings": [
+{
+    "family": "graphql",
+    "cpu": "256",
+    "memory": "512",
+    "containerDefinitions": [
       {
-        "containerPort": 80,
-        "hostPort": 80
-      }
-    ]
-  }
-]
+	"name": "graphql",
+	"image": "larcbp/kiper-sre-challenge:latest",
+	"cpu": 256,
+	"memory": 512,
+	"essential": true,
+	"portMappings": [{
+		"containerPort": 80,
+		"hostPort": 80
+	}]
+}],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+	"networkMode": "awsvpc"
+}
