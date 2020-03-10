@@ -33,3 +33,26 @@ You can use the tools you want, delivering and explaining why each step is what 
 - Infra as code
 - Complexity
 
+## Running
+```
+docker-compose up -d
+```
+
+## Using
+http://localhost or http://graphql.binganetworks.com.br
+You can change application URL changing nginx/default.conf
+
+## Testing
+Use this query in playground
+## Write your query or mutation here
+query {
+  allBrands {
+    name
+  }
+}
+
+## Production build
+This project use Jenkinsfile for deploy.
+
+# TODO
+- https
