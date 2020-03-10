@@ -1,0 +1,21 @@
+{
+    "family": "graphql",
+    "cpu": "512",
+    "memory": "1024",
+    "containerDefinitions": [
+      {
+	"name": "graphql",
+	"image": "larcbp/kiper-sre-challenge:latest",
+	"cpu": 512,
+	"memory": 1024,
+	"essential": true,
+	"portMappings": [{
+		"containerPort": 80,
+		"hostPort": 80
+	}]
+}],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+	"networkMode": "awsvpc"
+}

@@ -1,3 +1,5 @@
 yarn.lock
 node_modules
 .env
+terraform/.terraform/plugins
+terraform/terraform.tfstate*
