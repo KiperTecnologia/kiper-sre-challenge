@@ -6,7 +6,7 @@
       {
 	"name": "graphql",
 	"image": "larcbp/kiper-sre-challenge:latest",
-	"cpu": 256,
+	"cpu": 1024,
 	"memory": 512,
 	"essential": true,
 	"portMappings": [{
