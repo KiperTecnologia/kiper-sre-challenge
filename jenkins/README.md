@@ -30,40 +30,40 @@ cat /var/lib/jenkins/secrets/initialAdminPassword
 
 Acesso o jenkins que por padrão roda na porta 8080 do servidor e informe a senha.
 
-![alt text](http://1.png "Logo Title Text 1")
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/1.png)
 
 
 Após isto marque a opção "Select plugins to install" para adicionar o bitbucket.
 
 Pesquise por bitbucket e adicione o plugin.
 
-![alt text](http://2.png)
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/2.png)
 
 ## Configurando
 
 Marque install. Após instalar as aplicações crie um "Novo Job" informe o nome e utilize Multibranch Pipeline.
 
-![alt text](http://3.png)
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/3.png)
 
 Em source adicione "git" e em Project Repository informe a url do projeto como se fosse fazer um git clone
 
 Exemplo: git@bitbucket.org:larcbp/kiper-sre-challenge.git
 
-![alt text](http://4.png)
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/4.png)
 
 Em credentials adicione uma global com Kind "SSH Username with private key". Clique em "Enter directly" e em Key adicione uma private key capaz de fazer clone do projeto.
 
-![alt text](http://5.png)
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/5.png)
 
 Marque usa credencial para ser usada.
 
 Bem ao final da pagina em "Registry credentials" faça um Add com Kind "Username with password" informando um usuario e senha para o registry
 
-![alt text](http://6.png)
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/6.png)
 Salve e aplique.
 
 Volte até a Home vá em Credentials, copie o ID da credencial criada para o registry e atualize esta informação no Jenkinsfile 
-![alt text](http://7.png)
+![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/7.png)
 ## Acessando usuario jenkins e configurando aws credentials....
 Altere o usuario do jenkins para receber um bash
 
