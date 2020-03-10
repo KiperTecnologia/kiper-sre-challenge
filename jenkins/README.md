@@ -64,6 +64,22 @@ Salve e aplique.
 
 Volte até a Home vá em Credentials, copie o ID da credencial criada para o registry e atualize esta informação no Jenkinsfile 
 ![alt text](https://bitbucket.org/larcbp/kiper-sre-challenge/raw/8c709c10228e02d0f16e1034f0ae0ed02d7e567d/jenkins/images/7.png)
+
+
+
+````
+....
+            steps{
+                script {
+                    docker.withRegistry("https://index.docker.io/v1/", 'altere a ID aqui') {
+                        def customImage = docker.build("larcbp/kiper-sre-challenge:${BUILD_NUMBER}", ".")
+                        /* Push the container to the custom Registry */
+                        customImage.push()
+                    }
+                }
+            }
+....
+````
 ## Acessando usuario jenkins e configurando aws credentials....
 Altere o usuario do jenkins para receber um bash
 
@@ -95,21 +111,6 @@ Reinicie o jenkins
 
 ````
 systemctl restart jenkins
-````
-
-
-````
-....
-            steps{
-                script {
-                    docker.withRegistry("https://index.docker.io/v1/", 'altere a ID aqui') {
-                        def customImage = docker.build("larcbp/kiper-sre-challenge:${BUILD_NUMBER}", ".")
-                        /* Push the container to the custom Registry */
-                        customImage.push()
-                    }
-                }
-            }
-....
 ````
 
 O multiscan do Jenkins neste ponto já vai ter buscado as branchs com Jenkinsfile e basta solicitar um deploy da sua branch.
