@@ -20,7 +20,7 @@ pipeline {
         }
         stage('teste'){
             steps{
-	        sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:`aws ecs describe-task-definition  --task-definition graphql | jq '.taskDefinition.revision'` --desired-count 1"
+	        sh  "aws ecs update-service  --cluster graphql --service graphql --task-definition graphql:`aws ecs describe-task-definition  --task-definition graphql | jq '.taskDefinition.revision'` --desired-count 2"
             }
         }
     }
