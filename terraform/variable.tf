@@ -16,7 +16,7 @@ variable "app_port" {
 
 
 variable "health_check_path" {
-  default = "/"
+  default = "/.well-known/apollo/server-health"
 }
 
 variable "build_number" {

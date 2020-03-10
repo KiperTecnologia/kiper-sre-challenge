@@ -12,7 +12,6 @@ resource "aws_alb_target_group" "graphql" {
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
-
   health_check {
     healthy_threshold   = "3"
     interval            = "30"
